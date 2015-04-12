@@ -1,0 +1,17 @@
+html,body
+{
+	
+height: 100%;	
+
+}
+
+#containerHolder
+{
+
+	width: 100%;
+	min-height: 100%;
+	background-repeat: no-repeat; 
+	background-size: cover;
+	background-image: url(../R/Background.jpg);
+
+}
