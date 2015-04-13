@@ -45,14 +45,14 @@ var InitPrototypes = {
     
 	}
 
- }
+ }	
 
 
 }
 
 
-    var switchBg;
-    switchBg = function (inputStream) {
+
+    var switchBg = function (inputStream) {
 
         this.arrayInput = inputStream;
 
@@ -94,34 +94,62 @@ var InitPrototypes = {
 	 
      this.typeInputs = type;
 	 this.dateElements = dateElement;
-	
+	 var elementincrement;
+	 
 	 InitPrototypes.timeInit();  //init the time prototype
 	 InitPrototypes.dateInit();  //init the date prototype
 	
 	 DateString = new Date(); //date object
 	 
-	 var elementincrement;
-	 if(this.dateElements instanceof Array && this.dateElements != '' )
-	 {
 	 
+     var typeInputsKey , typeInputlength = 0;
+	 for(typeInputsKey in this.typeInputs)
+	 {
+	
+		if(this.typeInputs.hasOwnProperty(typeInputsKey))
+		{
+		
+			typeInputlength++;
+			
+			 
+			
+		}
+		 
+		
+		
+	 }
+	
+			
+	 
+	 if(this.dateElements instanceof Array && this.dateElements != '' && typeInputlength <= 2)
+	 {
+		 
 		 for(elementincrement =0; elementincrement < this.dateElements.length ; elementincrement ++)
 		 {
 		 
-		    
-     		var elementSelector = document.querySelector(this.dateElements[elementincrement]);
-	 		//console.log(elementSelector);
-			
-			 elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime();
+		    try
 			 
+			{
+     			var elementSelector = document.querySelector(this.dateElements[elementincrement]);
+	 			elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime();
+			 }
+			catch(ex)
 			 
+			{
+				 console.log(ex.message);
+				 
+		    }
 			 
-			 
-			 //construction area
-	      }
+		 }
+		 
+		     
+			  
+		 
+		 
+    }
 	 
-	 }
-	 
-	 else{
+	 else
+	 {
 	
 		 console.log('Something wrong with the input!');
 		 
@@ -132,7 +160,8 @@ var InitPrototypes = {
 	
   }
 	
-  var weatherApi = function(uriInput) {
+  var weatherApi = function(uriInput)
+   {
 	 this.uriStream = uriInput;  	 
 	 if(this.uriStream !== '' && typeof uriInput == string)
 	 {
@@ -171,5 +200,5 @@ var InitPrototypes = {
 
 
 shadesUiModule.setBg(['../R/Background.jpg','../R/Background_a.jpg']);
-shadesUiModule.showTime("jijo", ['#jijo' , '#sijo']);
+shadesUiModule.showTime({jijo:"dev", sijo : "car"}, ['#jijo' , '#sijo']);
 
