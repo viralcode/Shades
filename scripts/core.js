@@ -3,27 +3,31 @@
 * Company : Shades Team (Singlelinelogics)
 * Date : 7 april 2015
 * (C) Jijo John @ shades
+* Design pattern : Module patten
 */
 
 var shadesUiModule = (function () {
 
-/* Global Variables */
+/* Add global variables here */
 	
 var backgroundSwitch = [];
+	
 
 /* Global Variables end */	
 	
 var InitPrototypes = {
 
+	/* Object prototypes */
+	
 
  timeInit : function() {
 
 	 Date.prototype.getFormattedTime  = function()
 	 {
 		 
-
-	   var dateOb = new Date() , suffix = "AM", timeData = [];
-	   var hours = dateOb.getHours();
+       
+	   var dateOb = new Date() , suffix = "AM", timeData = [];  // Date object and other variables
+	   var hours = dateOb.getHours();  
 	   var minutes = dateOb.getMinutes();
 	   if (minutes < 10){ minutes = "0" + minutes;};
 	   if(hours >= 12){ suffix = "PM";hours = hours - 12;}
@@ -39,17 +43,20 @@ var InitPrototypes = {
 	Date.prototype.getFormattedDate = function()
     {
 		
-      var dateData = [];
+      var dateData = []; // dateData variable with array data type for returning the current date
       var day = this.getDay();
 	  var month = this.getMonth();
 	  var year=this.getFullYear();
 	  var months = ['January','February','March','April','May','June' , 'July' , 'August', 'September ','October' , 'November' ,'December'];
-	  dateData.push(months[month],day,year);
+	  dateData.push(months[month],day,year); 
       return dateData;
     
 	}
 
  }
+	
+	
+	/*Object prototypes end */
 	
 }
 
@@ -57,15 +64,17 @@ var InitPrototypes = {
 
     var switchBg = function (inputStream) {
 
-        this.arrayInput = inputStream;
+        this.arrayInput = inputStream; 
 
-        if (this.arrayInput instanceof Array || this.arrayInput != '') {
+        if (this.arrayInput instanceof Array || this.arrayInput != '')  //condition validates input stream
+		
+		  {
            
-			var i;
+			var i; //loop variable
 
             for (i = 0; i < inputStream.length; i++) {
 
-                backgroundSwitch.push(inputStream[i]);
+                backgroundSwitch.push(inputStream[i]); //adds the input stream data into the background switch array
 
             }
 
@@ -73,22 +82,22 @@ var InitPrototypes = {
         else 
 		{
             
-			console.log('Something wrong with the input !')
+			console.log('Something wrong with the input !') //logs the error in to the console
 
         }
 
 
-        var j = 0;
+        var j = 0; //counter
         
-		var r = backgroundSwitch.length - 1;
+		var r = backgroundSwitch.length - 1; //stores the length of backgroundSwitch array
 
         var shufflePic = function () {
 
-            var elementHolder = document.getElementById('containerHolder');
+            var elementHolder = document.getElementById('containerHolder'); // change in future
             
-			elementHolder.style.backgroundImage = 'url("' + backgroundSwitch[j] + '")';
+			elementHolder.style.backgroundImage = 'url("' + backgroundSwitch[j] + '")'; 
             
-			(j < r) ? j++ : j = 0;
+			(j < r) ? j++ : j = 0;  
         }
 
 
@@ -112,6 +121,7 @@ var InitPrototypes = {
 	
 	 DateString = new Date(); //date object
 	 
+	 /* Checks for the object length */ 
 	 
      var typeInputsKey , typeInputlength = 0;
 	 
@@ -123,20 +133,23 @@ var InitPrototypes = {
 	 }
 	
 	
-	 var elementincrement;
+	 /* End  */
 	 
-	 if(this.dateElements instanceof Array && this.dateElements != '' && typeInputlength <= 2)
+	 
+	 var elementincrement; //variable
+	 
+	 if(this.dateElements instanceof Array && this.dateElements != '' && typeInputlength <= 2) // validates the input
 	 {
 		 
-		 for(elementincrement =0; elementincrement < this.dateElements.length ; elementincrement ++)
+		 for(elementincrement =0; elementincrement < this.dateElements.length ; elementincrement ++) //loops the array
 		 {
 		 
-		    try
+		    try  
 			 
 			{
      			var elementSelector = document.querySelector(this.dateElements[elementincrement]);
 	 			
-				elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime();
+				elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime(); //change in future
 			 }
 			catch(ex)
 			 
@@ -153,7 +166,7 @@ var InitPrototypes = {
 	 else
 	 {
 	
-		 console.log('Something wrong with the input!');
+		 console.log('Something wrong with the input!'); //logs the error
 		 
 	 }
 	 
@@ -161,8 +174,8 @@ var InitPrototypes = {
 	 
 	
   }
-	
-  var weatherApi = function(uriInput)
+	 
+  var weatherApi = function(uriInput) //weather api is currently in development
    {
 	 this.uriStream = uriInput;
 	   
