@@ -3,12 +3,16 @@
 * Company : Shades Team (Singlelinelogics)
 * Date : 7 april 2015
 * (C) Jijo John @ shades
-* 
 */
 
 var shadesUiModule = (function () {
 
+/* Global Variables */
+	
 var backgroundSwitch = [];
+
+/* Global Variables end */	
+	
 var InitPrototypes = {
 
 
@@ -45,9 +49,8 @@ var InitPrototypes = {
     
 	}
 
- }	
-
-
+ }
+	
 }
 
 
@@ -57,7 +60,8 @@ var InitPrototypes = {
         this.arrayInput = inputStream;
 
         if (this.arrayInput instanceof Array || this.arrayInput != '') {
-            var i;
+           
+			var i;
 
             for (i = 0; i < inputStream.length; i++) {
 
@@ -66,20 +70,25 @@ var InitPrototypes = {
             }
 
         }
-        else {
-            console.log('Something wrong with the input !')
+        else 
+		{
+            
+			console.log('Something wrong with the input !')
 
         }
 
 
         var j = 0;
-        var r = backgroundSwitch.length - 1;
+        
+		var r = backgroundSwitch.length - 1;
 
         var shufflePic = function () {
 
             var elementHolder = document.getElementById('containerHolder');
-            elementHolder.style.backgroundImage = 'url("' + backgroundSwitch[j] + '")';
-            (j < r) ? j++ : j = 0;
+            
+			elementHolder.style.backgroundImage = 'url("' + backgroundSwitch[j] + '")';
+            
+			(j < r) ? j++ : j = 0;
         }
 
 
@@ -93,33 +102,28 @@ var InitPrototypes = {
  var timeAndDate = function(type,dateElement) {	
 	 
      this.typeInputs = type;
+	 
 	 this.dateElements = dateElement;
-	 var elementincrement;
+	
 	 
 	 InitPrototypes.timeInit();  //init the time prototype
+	 
 	 InitPrototypes.dateInit();  //init the date prototype
 	
 	 DateString = new Date(); //date object
 	 
 	 
      var typeInputsKey , typeInputlength = 0;
+	 
 	 for(typeInputsKey in this.typeInputs)
 	 {
 	
-		if(this.typeInputs.hasOwnProperty(typeInputsKey))
-		{
-		
-			typeInputlength++;
-			
-			 
-			
-		}
-		 
-		
+		(this.typeInputs.hasOwnProperty(typeInputsKey)) ? typeInputlength++ : typeInputlength = 0 ;			
 		
 	 }
 	
-			
+	
+	 var elementincrement;
 	 
 	 if(this.dateElements instanceof Array && this.dateElements != '' && typeInputlength <= 2)
 	 {
@@ -131,7 +135,8 @@ var InitPrototypes = {
 			 
 			{
      			var elementSelector = document.querySelector(this.dateElements[elementincrement]);
-	 			elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime();
+	 			
+				elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime();
 			 }
 			catch(ex)
 			 
@@ -143,9 +148,6 @@ var InitPrototypes = {
 		 }
 		 
 		     
-			  
-		 
-		 
     }
 	 
 	 else
@@ -162,7 +164,8 @@ var InitPrototypes = {
 	
   var weatherApi = function(uriInput)
    {
-	 this.uriStream = uriInput;  	 
+	 this.uriStream = uriInput;
+	   
 	 if(this.uriStream !== '' && typeof uriInput == string)
 	 {
 		
@@ -186,6 +189,7 @@ var InitPrototypes = {
   return {
 	  
     setBg: function(input){
+		
 		switchBg(input)
 	},
 	  
@@ -200,5 +204,6 @@ var InitPrototypes = {
 
 
 shadesUiModule.setBg(['../R/Background.jpg','../R/Background_a.jpg']);
-shadesUiModule.showTime({jijo:"dev", sijo : "car"}, ['#jijo' , '#sijo']);
+
+shadesUiModule.showTime({object1:"object1", object2 : "object2"}, ['#div1' , '.div2']);
 
