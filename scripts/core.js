@@ -26,7 +26,7 @@ var InitPrototypes = {
 	 {
 		 
        
-	   var dateOb = new Date() , suffix = "AM", timeData = [];  // Date object and other variables
+	   var dateOb = new Date() , suffix = "AM", timeData = [];  
 	   var hours = dateOb.getHours();  
 	   var minutes = dateOb.getMinutes();
 	   if (minutes < 10){ minutes = "0" + minutes;};
@@ -93,12 +93,13 @@ var InitPrototypes = {
 
         var shufflePic = function () {
 
-            var elementHolder = document.getElementById('containerHolder'); // change in future
+         var elementHolder = document.getElementById('containerHolder'); // change in future
             
-			elementHolder.style.backgroundImage = 'url("' + backgroundSwitch[j] + '")'; 
+	     elementHolder.style.backgroundImage = 'url("' + backgroundSwitch[j] + '")'; 
             
-			(j < r) ? j++ : j = 0;  
-        }
+		 (j < r) ? j++ : j = 0;  
+        
+		}
 
 
         window.addEventListener("load", setInterval(shufflePic, 5000), false);
