@@ -29,13 +29,13 @@ var InitPrototypes = {
 	   var dateOb = new Date() , suffix = "AM", timeData = [];  
 	   var hours = dateOb.getHours();  
 	   var minutes = dateOb.getMinutes();
-	   if (minutes < 10){ minutes = "0" + minutes;};
+	   if (minutes < 10){ minutes = "0" + minutes;}
 	   if(hours >= 12){ suffix = "PM";hours = hours - 12;}
-	   if(hours == 0 ) { hours = 12;}
+	   if(hours === 0 ) { hours = 12;}
 	   timeData.push(hours,minutes,suffix);
 	   return timeData; //Return Data array
 		 
-	 }
+	 };
  },
 
  dateInit: function() {
@@ -51,14 +51,14 @@ var InitPrototypes = {
 	  dateData.push(months[month],day,year); 
       return dateData;
     
-	}
+	};
 
  }
 	
 	
 	/*Object prototypes end */
 	
-}
+};
 
 
 
@@ -66,7 +66,7 @@ var InitPrototypes = {
 
         this.arrayInput = inputStream; 
 
-        if (this.arrayInput instanceof Array || this.arrayInput != '')  //condition validates input stream
+        if (this.arrayInput instanceof Array || this.arrayInput !== '')  //condition validates input stream
 		
 		  {
            
@@ -82,7 +82,7 @@ var InitPrototypes = {
         else 
 		{
             
-			console.log('Something wrong with the input !') //logs the error in to the console
+			console.log('Something wrong with the input !'); //logs the error in to the console
 
         }
 
@@ -99,7 +99,7 @@ var InitPrototypes = {
             
 		 (j < r) ? j++ : j = 0;  
         
-		}
+		};
 
 
         window.addEventListener("load", setInterval(shufflePic, 5000), false);
@@ -139,7 +139,7 @@ var InitPrototypes = {
 	 
 	 var elementincrement; //variable
 	 
-	 if(this.dateElements instanceof Array && this.dateElements != '' && typeInputlength <= 2) // validates the input
+	 if(this.dateElements instanceof Array && this.dateElements !== '' && typeInputlength <= 2) // validates the input
 	 {
 		 
 		 for(elementincrement =0; elementincrement < this.dateElements.length ; elementincrement ++) //loops the array
@@ -174,7 +174,7 @@ var InitPrototypes = {
 	 
 	 
 	
-  }
+  };
 	 
   var weatherApi = function(uriInput) //weather api is currently in development
    {
@@ -198,13 +198,13 @@ var InitPrototypes = {
 		 
 
 	
-}
+};
   
   return {
 	  
     setBg: function(input){
 		
-		switchBg(input)
+		switchBg(input);
 	},
 	  
      showTime : function(type , elements){ 
@@ -220,4 +220,3 @@ var InitPrototypes = {
 shadesUiModule.setBg(['../R/Background.jpg','../R/Background_a.jpg']);
 
 shadesUiModule.showTime({object1:"object1", object2 : "object2"}, ['#div1' , '.div2']);
-
