@@ -10,7 +10,7 @@ var shadesUiModule = (function () {
 
 /* Add global variables here */
 	
-var backgroundSwitch = [];
+var backgroundSwitch = backgroundSwitch ||  [];
 
 
 
@@ -177,6 +177,7 @@ var Init = {
 	
   };
 
+	
 var geoLocation = function(){	 //fetch user's current latitude and longitude  : N:B Tweaks required
 
  	 
@@ -268,6 +269,7 @@ var geoLocation = function(){	 //fetch user's current latitude and longitude  : 
      showTime : function(type , elements){ 
 	
 		 timeAndDate(type, elements);
+		 
 	 },
 	 
 	 CurrentLocation : function(element){
