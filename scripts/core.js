@@ -15,7 +15,7 @@ var backgroundSwitch = [];
 
 /* Global Variables end */	
 	
-var InitPrototypes = {
+var Init = {
 
 	/* Object prototypes */
 	
@@ -70,7 +70,7 @@ var InitPrototypes = {
 		
 		  {
            
-			var i; //loop variable
+			var i; 
 
             for (i = 0; i < inputStream.length; i++) {
 
@@ -116,9 +116,9 @@ var InitPrototypes = {
 	 this.dateElements = dateElement;
 	
 	 
-	 InitPrototypes.timeInit();  //init the time prototype
+	 Init.timeInit();  //init the time prototype
 	 
-	 InitPrototypes.dateInit();  //init the date prototype
+	 Init.dateInit();  //init the date prototype
 	
 	 DateString = new Date(); //date object
 	 
@@ -175,18 +175,75 @@ var InitPrototypes = {
 	 
 	
   };
+
+var geoLocation = function(){	 //fetch user's current latitude and longitude
+
+ 	 
+ var latitude, longitude; 
+  
+ if(navigator.geolocation)
+ {
+	
+	 window.addEventListener('load', function(){
+	  
+		 var startPos;
+		 var geoOptionsObj = { timeout : 10 * 1000};
+		 
+		 
+		 var geoSuccessCallback = function(position){
+		 
+			 startPos = position;
+		     latitude = startPos.coords.latitude;
+			 longitude = startPos.coords.longitude;
+			
+			 
+		 };
+		 
+		 var geoErrorCallback = function(error){
+		 	 
+		     console.log('Something went wrong' + '' + error.code);	 
+			 	
+		 };
+		 
+		 navigator.geolocation.getCurrentPosition(geoSuccessCallback , geoErrorCallback , geoOptionsObj);
+		 
+		 
 	 
-  var weatherApi = function(uriInput) //weather api is currently in development
+	 } ,false);
+	 
+	
+	 	
+ }
+	
+ else
+ {
+	
+	console.log('GeoLocation API not supported ! Please Upgrade Your Browser');
+	
+
+ }
+	
+ };
+	
+	
+	
+  var weatherApiParser = function(city , country) //weather api is currently in development
    {
-	 this.uriStream = uriInput;
-	   
-	 if(this.uriStream !== '' && typeof uriInput == string)
+	 this.uriStream = '';
+	 this.city = city;
+	 this.country = country;
+	 
+	 if(this.uriStream !== '' && typeof uriInput == string && this.city !== '' && this.country !== '')
 	 {
-		
+		 
 		 
 	   JSON.parse(); //In Development
 		 
 		 
+	
+	 
+	 
+	 
 	 }
 	  else
 	  {
@@ -210,6 +267,11 @@ var InitPrototypes = {
      showTime : function(type , elements){ 
 	
 		 timeAndDate(type, elements);
+	 },
+	 
+	 CurrentLocation : function(element){
+		 
+		 geoLocation(element)
 	 }
   
   };
@@ -220,3 +282,4 @@ var InitPrototypes = {
 shadesUiModule.setBg(['../R/Background.jpg','../R/Background_a.jpg']);
 
 shadesUiModule.showTime({object1:"object1", object2 : "object2"}, ['#div1' , '.div2']);
+shadesUiModule.CurrentLocation();

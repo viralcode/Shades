@@ -8,7 +8,7 @@
   "version": "0.5",
   "incognito": "split",
 	
-"permissions": [ "tabs"],
+"permissions": [ "tabs" , "geolocation"],
   
  
   "icons": { 
