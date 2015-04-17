@@ -17,7 +17,7 @@ var backgroundSwitch = backgroundSwitch ||  [];
 	
 var Init = {
 
-	/* Object prototypes */
+	/*  prototypes */
 	
 
  timeInit : function() {
