@@ -11,7 +11,8 @@ var shadesUiModule = (function () {
 /* Add global variables here */
 	
 var backgroundSwitch = [];
-	
+
+
 
 /* Global Variables end */	
 	
@@ -83,7 +84,7 @@ var Init = {
 		{
             
 			console.log('Something wrong with the input !'); //logs the error in to the console
-
+            
         }
 
 
@@ -176,7 +177,7 @@ var Init = {
 	
   };
 
-var geoLocation = function(){	 //fetch user's current latitude and longitude
+var geoLocation = function(){	 //fetch user's current latitude and longitude  : N:B Tweaks required
 
  	 
  var latitude, longitude; 
@@ -279,7 +280,7 @@ var geoLocation = function(){	 //fetch user's current latitude and longitude
 })();
 
 
-shadesUiModule.setBg(['../R/Background.jpg','../R/Background_a.jpg']);
 
+shadesUiModule.setBg(['../R/Background.jpg','../R/Background_a.jpg']);
 shadesUiModule.showTime({object1:"object1", object2 : "object2"}, ['#div1' , '.div2']);
 shadesUiModule.CurrentLocation();
