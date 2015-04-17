@@ -3,7 +3,6 @@
 * Company : Shades Team (Singlelinelogics)
 * Date : 7 april 2015
 * (C) Jijo John @ shades
-* Design pattern : Module patten
 */
 
 var shadesUiModule = (function () {
@@ -231,16 +230,14 @@ var geoLocation = function(){	 //fetch user's current latitude and longitude  : 
 	
   var weatherApiParser = function(city , country) //weather api is currently in development
    {
-	 this.uriStream = '';
-	 this.city = city;
-	 this.country = country;
-	 
-	 if(this.uriStream !== '' && typeof uriInput == string && this.city !== '' && this.country !== '')
+	
+	 var uriInput, city,country; 
+	   
+	 if( typeof uriInput == string && city !== '' && country !== '')
 	 {
 		 
 		 
-	   JSON.parse(); //In Development
-		 
+	  //statements....
 		 
 	
 	 
