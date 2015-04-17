@@ -53,7 +53,7 @@ var shadesUiModule = (function() {
                 var day = this.getDay();
                 var month = this.getMonth();
                 var year = this.getFullYear();
-                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October', 'November', 'December'];
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October',         'November', 'December'];
                 dateData.push(months[month], day, year);
                 return dateData;
 
@@ -62,12 +62,11 @@ var shadesUiModule = (function() {
         }
 
 
-        /*Object prototypes end */
+       
 
     };
-
-
-
+	
+	
     var switchBg = function(inputStream) {
 
         this.arrayInput = inputStream;
@@ -154,7 +153,8 @@ var shadesUiModule = (function() {
                     var elementSelector = document.querySelector(this.dateElements[elementincrement]);
 
                     elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime(); //change in future
-                } catch (ex)
+                
+				} catch (ex)
 
                 {
                     console.log(ex.message);
