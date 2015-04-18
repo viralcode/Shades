@@ -105,7 +105,7 @@ var shadesUiModule = (function() {
         };
 
 
-        window.addEventListener("load", setInterval(shufflePic, 5000), false);
+        window.addEventListener('load', setInterval(shufflePic, 5000), false);
 
 
     };
@@ -176,27 +176,35 @@ var shadesUiModule = (function() {
     };
 
 
-    var geoLocation = function() { //fetch user's current latitude and longitude  : N:B Tweaks required
+    var LocationData = function(city , country) { //fetch user's current latitude and longitude  : N:B Tweaks required
 
-
-        var latitude, longitude;
-
-        if (navigator.geolocation) {
+        
+        var latitude,longitude;
+		this.city = city;
+		this.country = country;
+          
+		if (navigator.geolocation) {
 
             window.addEventListener('load', function() {
-
+               
                 var startPos;
-                var geoOptionsObj = {
+                
+				var geoOptionsObj = {
+					
                     timeout: 10 * 1000
                 };
 
 
                 var geoSuccessCallback = function(position) {
-
+                    
+					
                     startPos = position;
                     latitude = startPos.coords.latitude;
                     longitude = startPos.coords.longitude;
-
+                    
+					weatherApiParser(this.city , this.country , latitude ,longitude);
+					
+					
 
                 };
 
@@ -206,9 +214,10 @@ var shadesUiModule = (function() {
 
                 };
 
-                navigator.geolocation.getCurrentPosition(geoSuccessCallback, geoErrorCallback, geoOptionsObj);
-
-
+               
+				navigator.geolocation.getCurrentPosition(geoSuccessCallback, geoErrorCallback, geoOptionsObj);
+                
+               
 
             }, false);
 
@@ -220,34 +229,42 @@ var shadesUiModule = (function() {
 
 
         }
+	 
+	    
+		
 
     };
 
 
 
-    var weatherApiParser = function(city, country) //weather api is currently in development
-        {
+    var weatherApiParser = function(city, country , Latitude, Longitude) 
+    {
+		
+             //Weather api Uri 
+		  var uriInput = "http://api.openweathermap.org/data/2.5/weather?lat=" +  Latitude + "&lon=" +  Longitude  + "&mode=json";
+		   var xhr = new XMLHttpRequest();
+		   xhr.onreadystatechange = function(){
+			
+			   if(xhr.readyState == 4)
+			   {
+				   
+				   
+					   var response = JSON.parse(xhr.responseText);
+					   alert(response);
+				   
+				   
+			   }
+			   
+			   
+			   
+		   }
+		   
+		   xhr.open("GET", 'http://viralcoder.com/Core_App/jijo.json', true);
+           xhr.send();  
 
-            var uriInput, city, country;
-
-            if (typeof uriInput == string && city !== '' && country !== '') {
 
 
-                //statements....
-
-
-
-
-            } else {
-
-                console.log('invalid Input');
-
-
-            }
-
-
-
-        };
+   };
 
     return {
 
@@ -262,9 +279,10 @@ var shadesUiModule = (function() {
 
         },
 
-        CurrentLocation: function(element) {
+        CurrentLocation: function(city , country) {
 
-            geoLocation(element)
+        LocationData(city, country);
+			
         }
 
     };
@@ -278,4 +296,4 @@ shadesUiModule.showTime({
     object1: "object1",
     object2: "object2"
 }, ['#div1', '.div2']);
-shadesUiModule.CurrentLocation();
+shadesUiModule.CurrentLocation('London','Canada');
