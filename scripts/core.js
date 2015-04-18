@@ -241,16 +241,16 @@ var shadesUiModule = (function() {
     {
 		
              //Weather api Uri 
-		  var uriInput = "http://api.openweathermap.org/data/2.5/weather?lat=" +  Latitude + "&lon=" +  Longitude  + "&mode=json";
-		   var xhr = new XMLHttpRequest();
+		  var uriInput = 'http://api.openweathermap.org/data/2.5/weather?lat=' +  Latitude + '&lon=' +  Longitude  +    '&mode=json&APPID=5153be936572857b83596b648dcf57ff';
+		   
+		  var xhr = new XMLHttpRequest();
 		   xhr.onreadystatechange = function(){
 			
 			   if(xhr.readyState == 4)
 			   {
+				  
+				   var response = JSON.parse(xhr.responseText);
 				   
-				   
-					   var response = JSON.parse(xhr.responseText);
-					   alert(response);
 				   
 				   
 			   }
@@ -259,7 +259,7 @@ var shadesUiModule = (function() {
 			   
 		   }
 		   
-		   xhr.open("GET", 'http://viralcoder.com/Core_App/jijo.json', true);
+		   xhr.open("GET", uriInput , true);
            xhr.send();  
 
 
@@ -281,11 +281,13 @@ var shadesUiModule = (function() {
 
         CurrentLocation: function(city , country) {
 
-        LocationData(city, country);
+        	LocationData(city, country);
+			
 			
         }
 
     };
+
 
 })();
 
