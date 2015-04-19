@@ -305,5 +305,5 @@ shadesUiModule.setBg(['../R/Background.jpg']);
 shadesUiModule.showTime({
     object1: "object1",
     object2: "object2"
-}, ['#div1']);
+}, ['#time_content']);
 shadesUiModule.CurrentLocation('London', 'Canada', ['.div3']);
