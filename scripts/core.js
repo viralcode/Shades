@@ -53,7 +53,7 @@ var shadesUiModule = (function() {
                 var day = this.getDay();
                 var month = this.getMonth();
                 var year = this.getFullYear();
-                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October',         'November', 'December'];
+                var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October', 'November', 'December'];
                 dateData.push(months[month], day, year);
                 return dateData;
 
@@ -62,11 +62,11 @@ var shadesUiModule = (function() {
         }
 
 
-       
+
 
     };
-	
-	
+
+
     var switchBg = function(inputStream) {
 
         this.arrayInput = inputStream;
@@ -153,8 +153,8 @@ var shadesUiModule = (function() {
                     var elementSelector = document.querySelector(this.dateElements[elementincrement]);
 
                     elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime(); //change in future
-                
-				} catch (ex)
+
+                } catch (ex)
 
                 {
                     console.log(ex.message);
@@ -176,34 +176,34 @@ var shadesUiModule = (function() {
     };
 
 
-    var LocationData = function(city , country , elements) { //fetch user's current latitude and longitude  : N:B Tweaks required
+    var LocationData = function(city, country, elements) { //fetch user's current latitude and longitude  : N:B Tweaks required
 
-        
-        var latitude,longitude;
-          
-		if (navigator.geolocation) {
+
+        var latitude, longitude;
+
+        if (navigator.geolocation) {
 
             window.addEventListener('load', function() {
-               
+
                 var startPos;
-                
-				var geoOptionsObj = {
-					
+
+                var geoOptionsObj = {
+
                     timeout: 10 * 1000
                 };
 
 
                 var geoSuccessCallback = function(position) {
-                    
-					
+
+
                     startPos = position;
-                    
-					latitude = startPos.coords.latitude;
+
+                    latitude = startPos.coords.latitude;
                     longitude = startPos.coords.longitude;
-                    
-					weatherApiParser(city , country, elements, latitude ,longitude);
-					
-					
+
+                    weatherApiParser(city, country, elements, latitude, longitude);
+
+
 
                 };
 
@@ -212,11 +212,11 @@ var shadesUiModule = (function() {
                     console.log('Something went wrong' + '' + error.code);
 
                 };
-               
-               
-				navigator.geolocation.getCurrentPosition(geoSuccessCallback, geoErrorCallback, geoOptionsObj);
-                
-               
+
+
+                navigator.geolocation.getCurrentPosition(geoSuccessCallback, geoErrorCallback, geoOptionsObj);
+
+
 
             }, false);
 
@@ -228,54 +228,51 @@ var shadesUiModule = (function() {
 
 
         }
-	 
-	    
-		
+
+
+
 
     };
 
 
 
-    var weatherApiParser = function(city, country , elements, Latitude, Longitude) 
-    {
-		
-     //Weather api Uri 
-       var uriInput = 'http://api.openweathermap.org/data/2.5/weather?lat=' +  Latitude + '&lon=' +  Longitude  +  '&mode=json&APPID=5153be936572857b83596b648dcf57ff';
-		var response, temperatureInCelsius;   
-		  var xhr =  new XMLHttpRequest();
-		   xhr.onreadystatechange = function(){
-			
-			   if(xhr.readyState == 4 && xhr.status == 200)
-			   {
-				  
-				   response = JSON.parse(xhr.responseText);
-				   
-				   temperatureInCelsius = Math.floor((response.main.temp )- 273.15); //temperature in celsius
-				   
-				   for(var i=0; i < elements.length; i++)
-				   {
-					  
-					   var elementSelector = document.querySelector(elements[i]);
-					   elementSelector.innerHTML = parseInt(temperatureInCelsius) + '°C';
-					
-					   
-					   
-					}
-				   
-				   
-				   
-				}
-			   
-			   
-			   
-		   }
-		   
-		   xhr.open("GET", uriInput , true);
-           xhr.send();  
+    var weatherApiParser = function(city, country, elements, Latitude, Longitude) {
+
+        //Weather api Uri 
+        var uriInput = 'http://api.openweathermap.org/data/2.5/weather?lat=' + Latitude + '&lon=' + Longitude + '&mode=json&APPID=5153be936572857b83596b648dcf57ff';
+        var response, temperatureInCelsius;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                response = JSON.parse(xhr.responseText);
+
+                temperatureInCelsius = Math.floor((response.main.temp) - 273.15); //temperature in celsius
+
+                for (var i = 0; i < elements.length; i++) {
+
+                    var elementSelector = document.querySelector(elements[i]);
+                    elementSelector.innerHTML = parseInt(temperatureInCelsius) + '°C';
 
 
 
-   };
+                }
+
+
+
+            }
+
+
+
+        }
+
+        xhr.open("GET", uriInput, true);
+        xhr.send();
+
+
+
+    };
 
     return {
 
@@ -290,11 +287,11 @@ var shadesUiModule = (function() {
 
         },
 
-        CurrentLocation: function(city , country,element) {
+        CurrentLocation: function(city, country, element) {
 
-        	LocationData(city, country, element);
-			
-			
+            LocationData(city, country, element);
+
+
         }
 
     };
@@ -309,4 +306,4 @@ shadesUiModule.showTime({
     object1: "object1",
     object2: "object2"
 }, ['#div1']);
-shadesUiModule.CurrentLocation('London','Canada' , ['.div3']);
+shadesUiModule.CurrentLocation('London', 'Canada', ['.div3']);
