@@ -1,6 +1,5 @@
 /*   
- * Author : Jijo John
- * Company : Shades Team (Singlelinelogics)
+ * Author : Jijo John @ Shades a.k.a singlelinelogics
  * Date : 7 april 2015
  * (C) Jijo John @ shades
  */
@@ -8,7 +7,7 @@ var shadesUiModule = (function() {
 
     /* Add global variables here */
 
-    var backgroundSwitch = backgroundSwitch || [];
+    var backgroundSwitch = backgroundSwitch || []; 
 
 
 
@@ -199,7 +198,8 @@ var shadesUiModule = (function() {
                     startPos = position;
 
                     latitude = startPos.coords.latitude;
-                    longitude = startPos.coords.longitude;
+                    
+					longitude = startPos.coords.longitude;
 
                     weatherApiParser(city, country, elements, latitude, longitude);
 
@@ -240,9 +240,12 @@ var shadesUiModule = (function() {
 
         //Weather api Uri 
         var uriInput = 'http://api.openweathermap.org/data/2.5/weather?lat=' + Latitude + '&lon=' + Longitude + '&mode=json&APPID=5153be936572857b83596b648dcf57ff';
+		
         var response, temperatureInCelsius;
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
+        
+		var xhr = new XMLHttpRequest();
+        
+		xhr.onreadystatechange = function() {
 
             if (xhr.readyState == 4 && xhr.status == 200) {
 
@@ -253,7 +256,8 @@ var shadesUiModule = (function() {
                 for (var i = 0; i < elements.length; i++) {
 
                     var elementSelector = document.querySelector(elements[i]);
-                    elementSelector.innerHTML = parseInt(temperatureInCelsius) + '°C';
+                    
+					elementSelector.innerHTML = parseInt(temperatureInCelsius) + '°C';
 
 
 
@@ -268,7 +272,8 @@ var shadesUiModule = (function() {
         }
 
         xhr.open("GET", uriInput, true);
-        xhr.send();
+        
+		xhr.send();
 
 
 
