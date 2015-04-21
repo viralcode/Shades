@@ -3,6 +3,7 @@
  * Date : 7 april 2015
  * (C) Jijo John @ shades
  */
+
 var shadesUiModule = (function() {
 
     /* Add global variables here */
@@ -27,7 +28,7 @@ var shadesUiModule = (function() {
                     suffix = "AM",
                     timeData = [];
                 var hours = dateOb.getHours();
-                var minutes = dateOb.getMinutes();
+				var minutes = dateOb.getMinutes();
                 if (minutes < 10) {
                     minutes = "0" + minutes;
                 }
@@ -38,8 +39,10 @@ var shadesUiModule = (function() {
                 if (hours === 0) {
                     hours = 12;
                 }
-                timeData.push(hours, minutes, suffix);
-                return timeData; //Return Data array
+                var finalTime = hours + ":" + minutes + " " + suffix; 
+				timeData.push(finalTime);
+                
+				return timeData; //Return Data array
 
             };
         },
@@ -49,11 +52,12 @@ var shadesUiModule = (function() {
             Date.prototype.getFormattedDate = function() {
 
                 var dateData = []; // dateData variable with array data type for returning the current date
-                var day = this.getDay();
+                var day = this.getDate();
                 var month = this.getMonth();
                 var year = this.getFullYear();
                 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October', 'November', 'December'];
-                dateData.push(months[month], day, year);
+				var finalData = months[month] + " " + "" + day + "," + " " + year;
+                dateData.push(finalData);
                 return dateData;
 
             };
@@ -111,66 +115,77 @@ var shadesUiModule = (function() {
 
 
 
-    var timeAndDate = function(type, dateElement) {
+    var timeAndDate = function(elements) {
 
-        this.typeInputs = type;
+        Init.timeInit(); //initialize the time prototype
 
-        this.dateElements = dateElement;
-
-
-        Init.timeInit(); //init the time prototype
-
-        Init.dateInit(); //init the date prototype
+        Init.dateInit(); //initialize the date prototype
 
         DateString = new Date(); //date object
 
         /* Checks for the object length */
 
-        var typeInputsKey, typeInputlength = 0;
+        var elementsKey, typeInputlength = 0 , time , date;
 
-        for (typeInputsKey in this.typeInputs) {
+		 for (elementsKey in elements) {
 
-            (this.typeInputs.hasOwnProperty(typeInputsKey)) ? typeInputlength++ : typeInputlength = 0;
-
+            (elements.hasOwnProperty(elementsKey)) ? typeInputlength++ : typeInputlength = 0;
+             
+			if(typeof elements == 'object' && typeInputlength !== 0)
+			{
+			   if(typeInputlength <= 2)
+			   {
+				
+				 if(elementsKey == 'time' || elementsKey == 'date')
+				 {
+					  
+					 
+					time = document.querySelector(elements['time']);
+					
+					 time.innerHTML = DateString.getFormattedTime();
+					
+					 date = document.querySelector(elements['date']);
+					
+					 date.innerHTML = DateString.getFormattedDate();
+					 
+					 
+				 
+				 }
+				
+				
+			    }
+			    else
+				{
+					
+				 console.log('Invalid object length');	
+					
+				}
+				
+			}
+			 
+			else
+			{
+				
+				
+			  console.log('Invalid input data');
+				
+			
+			}
+			
+			 
+			 
+			
         }
 
-
+       
+		
         /* End  */
 
 
-        var elementincrement; //variable
-
-        if (this.dateElements instanceof Array && this.dateElements !== '' && typeInputlength <= 2) // validates the input
-        {
-
-            for (elementincrement = 0; elementincrement < this.dateElements.length; elementincrement++) //loops the array
-            {
-
-                try
-
-                {
-                    var elementSelector = document.querySelector(this.dateElements[elementincrement]);
-
-                    elementSelector.innerHTML = DateString.getFormattedDate() + DateString.getFormattedTime(); //change in future
-
-                } catch (ex)
-
-                {
-                    console.log(ex.message);
-
-                }
-
-            }
+        
 
 
-        } else {
-
-            console.log('Something wrong with the input!'); //logs the error
-
-        }
-
-
-
+    
 
     };
 
@@ -275,7 +290,7 @@ var shadesUiModule = (function() {
         
 		xhr.send();
 
-
+    
 
     };
 
@@ -286,9 +301,9 @@ var shadesUiModule = (function() {
             switchBg(input);
         },
 
-        showTime: function(type, elements) {
+        showTime: function(elements) {
 
-            timeAndDate(type, elements);
+            timeAndDate(elements);
 
         },
 
@@ -308,7 +323,8 @@ var shadesUiModule = (function() {
 
 shadesUiModule.setBg(['../R/Background.jpg']);
 shadesUiModule.showTime({
-    object1: "object1",
-    object2: "object2"
-}, ['#time_content']);
-shadesUiModule.CurrentLocation('London', 'Canada', ['.div3']);
+    time: "#time_content",
+    date: "#date_content",
+	
+});
+shadesUiModule.CurrentLocation('London', 'Canada', ['#weather_content']);

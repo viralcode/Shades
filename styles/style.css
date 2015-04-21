@@ -15,3 +15,26 @@ height: 100%;
 	background-image: url(../R/Background.jpg);
 
 }
+
+#time_Container #time_content
+{
+	
+
+	font-family: sans-serif;
+	font-size:300%;
+	color:#fff;
+	
+}
+#date_content
+{
+	font-family: sans-serif;
+	font-size:300%;
+	color:#fff;
+	
+}
+#weather_content
+{
+
+	color:#fff;
+	
+}
