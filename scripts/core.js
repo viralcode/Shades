@@ -3,18 +3,16 @@
  * Date : 7 april 2015
  * (C) Jijo John @ shades
  */
-
 var shadesUiModule = (function() {
 
     /* Add global variables here */
 
-    var backgroundSwitch = backgroundSwitch || []; 
-
-
+    var backgroundSwitch = backgroundSwitch || [];
 
     /* Global Variables end */
 
-    var Init = {
+    
+	var Init = {
 
         /*  prototypes */
 
@@ -25,10 +23,10 @@ var shadesUiModule = (function() {
 
 
                 var dateOb = new Date(),
-                    suffix = "AM";    
+                    suffix = "AM";
                 var hours = dateOb.getHours();
-				var minutes = dateOb.getMinutes();
-				var seconds = dateOb.getSeconds();
+                var minutes = dateOb.getMinutes();
+                var seconds = dateOb.getSeconds();
                 if (minutes < 10) {
                     minutes = "0" + minutes;
                 }
@@ -39,8 +37,8 @@ var shadesUiModule = (function() {
                 if (hours === 0) {
                     hours = 12;
                 }
-                var finalTime = hours + ":" + minutes + " " + suffix; 
-				return finalTime; 
+                var finalTime = hours + ":" + minutes + " " + suffix;
+                return finalTime;
 
             };
         },
@@ -49,12 +47,12 @@ var shadesUiModule = (function() {
 
             Date.prototype.getFormattedDate = function() {
 
-                
+
                 var day = this.getDate();
                 var month = this.getMonth();
                 var year = this.getFullYear();
                 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October', 'November', 'December'];
-				var finalData = months[month] + " " + "" + day + "," + " " + year;
+                var finalData = months[month] + " " + "" + day + "," + " " + year;
                 return finalData;
 
             };
@@ -118,76 +116,60 @@ var shadesUiModule = (function() {
 
         Init.dateInit(); //initialize the date prototype
 
-        DateString = new Date(); //date object
-
-        /* Checks for the object length */
-
-        var elementsKey, typeInputlength = 0 , time , date;
-
-		 for (elementsKey in elements) {
-
-            (elements.hasOwnProperty(elementsKey)) ? typeInputlength++ : typeInputlength = 0;
-             
-			if(typeof elements == 'object' && typeInputlength !== 0)
-			{
-			   if(typeInputlength <= 2)
-			   {
-				
-				 if(elementsKey == 'time' || elementsKey == 'date')
-				 {
-					  
-					 
-					time = document.querySelector(elements['time']);
-					
-					 time.innerHTML = DateString.getFormattedTime();
-					
-					 date = document.querySelector(elements['date']);
-					
-					 date.innerHTML = DateString.getFormattedDate();
-					 
-					 
-				 
-				 }
-				
-				
-			    }
-			    else
-				{
-					
-				 console.log('Invalid object length');	
-					
-				}
-				
-			}
-			 
-			else
-			{
-				
-				
-			  console.log('Invalid input data');
-				
-			
-			}
-			
-			 
-			 
-			
-        }
-
-       
-		
-        /* End  */
-
+        DateString = new Date(); 
 
         
 
+        var elementsKey, typeInputlength = 0,
+            time, date;
 
-    
+        for (elementsKey in elements) {
+
+            (elements.hasOwnProperty(elementsKey)) ? typeInputlength++ : typeInputlength = 0;
+
+            if (typeof elements == 'object' && typeInputlength !== 0) {
+                if (typeInputlength <= 2) {
+
+                    if (elementsKey == 'time' || elementsKey == 'date') {
+
+
+                        time = document.querySelector(elements['time']);
+
+                        time.innerHTML = DateString.getFormattedTime();
+
+                        date = document.querySelector(elements['date']);
+
+                        date.innerHTML = DateString.getFormattedDate();
+
+
+
+                    }
+
+
+                } else {
+
+                    console.log('Invalid object length');
+
+                }
+
+            } else {
+
+
+                console.log('Invalid input data');
+
+
+            }
+
+
+
+
+        }
+
 
     };
 
 
-    var LocationData = function(city, country, elements) { //fetch user's current latitude and longitude  : N:B Tweaks required
+    var LocationData = function( city, country, elements ) { //fetch user's current latitude and longitude  
 
 
         var latitude, longitude;
@@ -210,8 +192,8 @@ var shadesUiModule = (function() {
                     startPos = position;
 
                     latitude = startPos.coords.latitude;
-                    
-					longitude = startPos.coords.longitude;
+
+                    longitude = startPos.coords.longitude;
 
                     weatherApiParser(city, country, elements, latitude, longitude);
 
@@ -248,28 +230,32 @@ var shadesUiModule = (function() {
 
 
 
-    var weatherApiParser = function(city, country, elements, Latitude, Longitude) {
+    var weatherApiParser = function( city, country, elements, Latitude, Longitude ) {
 
         //Weather api Uri 
-        var uriInput = 'http://api.openweathermap.org/data/2.5/weather?lat=' + Latitude + '&lon=' + Longitude + '&mode=json&APPID=5153be936572857b83596b648dcf57ff';
-		
+        var uriInput = 'http://api.openweathermap.org/data/2.5/weather?lat=' + Latitude + '&lon=' + Longitude +    '&mode=json&APPID=5153be936572857b83596b648dcf57ff';
+
         var response, temperatureInCelsius;
-        
-		var xhr = new XMLHttpRequest();
-        
-		xhr.onreadystatechange = function() {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
 
             if (xhr.readyState == 4 && xhr.status == 200) {
 
                 response = JSON.parse(xhr.responseText);
+
+                xhr.onerror = function(e) {
+                    console.log(e.message)
+                };
 
                 temperatureInCelsius = Math.floor((response.main.temp) - 273.15); //temperature in celsius
 
                 for (var i = 0; i < elements.length; i++) {
 
                     var elementSelector = document.querySelector(elements[i]);
-                    
-					elementSelector.innerHTML = parseInt(temperatureInCelsius) + '°C';
+
+                    elementSelector.innerHTML = parseInt(temperatureInCelsius) + '°C';
 
 
 
@@ -283,13 +269,47 @@ var shadesUiModule = (function() {
 
         }
 
-        xhr.open("GET", uriInput, true);
-        
-		xhr.send();
+        xhr.open("GET", decodeURI(uriInput), true);
 
-    
+        xhr.send();
+
+
 
     };
+
+
+    var googleSearchSuggestions = function(search_Keyword , element) {
+
+		
+		var uri = 'http://suggestqueries.google.com/complete/search?output=toolbar&hl=en&q=' + search_Keyword;
+		
+		var xhr = (typeof XMLHttpRequest !== 'undefined') ? new XMLHttpRequest() : new ActiveXObject(Microsoft.XMLHTTP);
+	    
+		xhr.onreadystatechange = function(){
+		xhr.responseType = 'xml';
+			
+	    if(xhr.status == 200 && xhr.readyState == 4)
+		 {
+		
+		  var response = xhr.responseXML;	  
+		  
+        
+
+		
+		
+         } 
+			
+		
+		
+		
+		}
+		xhr.open('GET', decodeURI(uri), true);
+        xhr.send();
+      
+    };
+
+
+
 
     return {
 
@@ -309,7 +329,13 @@ var shadesUiModule = (function() {
             LocationData(city, country, element);
 
 
-        }
+        },
+		
+		searchSuggest : function(search_Keyword){
+		
+		    googleSearchSuggestions(search_Keyword);
+		
+	     }
 
     };
 
@@ -321,7 +347,7 @@ var shadesUiModule = (function() {
 shadesUiModule.setBg(['../R/Background.jpg']);
 shadesUiModule.showTime({
     time: "#time_content",
-    date: "#date_content",
-	
+    date: "#date_content"
 });
 shadesUiModule.CurrentLocation('London', 'Canada', ['#weather_content']);
+shadesUiModule.searchSuggest('Google');

@@ -38,3 +38,12 @@ height: 100%;
 	color:#fff;
 	
 }
+.search_Bar input[type=text]
+{
+	
+	width: 40%;
+	height: 35px;
+	border-radius: 10px;
+	text-align: center;
+	border:0px;
+}
