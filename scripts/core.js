@@ -25,10 +25,10 @@ var shadesUiModule = (function() {
 
 
                 var dateOb = new Date(),
-                    suffix = "AM",
-                    timeData = [];
+                    suffix = "AM";    
                 var hours = dateOb.getHours();
 				var minutes = dateOb.getMinutes();
+				var seconds = dateOb.getSeconds();
                 if (minutes < 10) {
                     minutes = "0" + minutes;
                 }
@@ -40,9 +40,7 @@ var shadesUiModule = (function() {
                     hours = 12;
                 }
                 var finalTime = hours + ":" + minutes + " " + suffix; 
-				timeData.push(finalTime);
-                
-				return timeData; //Return Data array
+				return finalTime; 
 
             };
         },
@@ -51,14 +49,13 @@ var shadesUiModule = (function() {
 
             Date.prototype.getFormattedDate = function() {
 
-                var dateData = []; // dateData variable with array data type for returning the current date
+                
                 var day = this.getDate();
                 var month = this.getMonth();
                 var year = this.getFullYear();
                 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September ', 'October', 'November', 'December'];
 				var finalData = months[month] + " " + "" + day + "," + " " + year;
-                dateData.push(finalData);
-                return dateData;
+                return finalData;
 
             };
 
