@@ -276,8 +276,54 @@ var shadesUiModule = (function() {
 
 
     };
+	
+	var speachApi = function(){
+	
+	   var recognition = (typeof webkitSpeechRecognition !== 'undefined') ? new webkitSpeechRecognition() : console.log('Voice recognition is not available');
+		
+		recognition.continous = false;
+	    recognition.interimResults = true;
+		
+		recognition.onresult = function(event){
+	    
+			
+			if(typeof event.results == 'undefined'){
+			
+				recognition.stop();
+			
+			
+			
+			
+			}
+			
+			var i;
+			
+			for(i = event.resultIndex; i< event.results.length; i ++)
+			{
+				
+				if(event.results[i].isFinal)
+				{
+			   	
+				console.log(event.results[i][0].transcript);
+			
+				
+				}
+			
+			}
+		
+		
+		}
+		
+		
+		
+		recognition.start();
+	
+	
 
-
+	};
+	
+	
+	
     var googleSearchSuggestions = function(search_Keyword , element) {
 
 		
@@ -330,6 +376,8 @@ var shadesUiModule = (function() {
 
 
         },
+		
+		Speech : speachApi() ,
 		
 		searchSuggest : function(search_Keyword){
 		
