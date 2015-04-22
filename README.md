@@ -3,13 +3,19 @@
  *Credits Shades team a.k.a Team Singlelinelogics -> Jijo john , Manzoor , Aswin , Jishnu ..
  
  
-Shades is a  chrome extension for changing your old and boring New tab page. We are using the Javascript module pattern for client side 
-development. Our team used Chrome browser api and some third party apis for achieving the goals. The layout is created using the
-bootstrap library and some javascript functionalities are made by Jquery.
+Shades is a  chrome extension for changing your default chrome New tab page.
+
+#Features
+* Weather
+* Time 
+* Voice Search and Voice commands
+* Todo list
+ and more ...
+
+
 
 We want your support to make this extension a reality.
 
-Thanks to Bootstrap and Jquery Contributors
 
 #Directory Structure 
 
