@@ -1,4 +1,4 @@
-# Shades from Shades Team ( Singlelinelogics )
+# Shades (Chrome extension)
 
  *Credits Shades team a.k.a Team Singlelinelogics -> Jijo john , Manzoor , Aswin , Jishnu ..
  
