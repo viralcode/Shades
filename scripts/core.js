@@ -290,9 +290,10 @@ var shadesUiModule = (function() {
 			if(typeof event.results == 'undefined'){
 			
 				recognition.stop();
+			    recognition.onend = null;
 			
 			
-			
+				
 			
 			}
 			
@@ -304,6 +305,7 @@ var shadesUiModule = (function() {
 				if(event.results[i].isFinal)
 				{
 			   	
+				
 				console.log(event.results[i][0].transcript);
 			
 				
@@ -339,8 +341,20 @@ var shadesUiModule = (function() {
 		
 		  var response = xhr.responseXML;	  
 		  
-        
-
+			 var items = response.getElementsByTagName('toplevel')
+		     
+			 for (var i = 0 ; i < items[0].childNodes.length;i++)
+			 {
+				 
+				 
+				var results = items[0].childNodes[i].firstElementChild.getAttribute('data'));
+				
+				 
+			 }
+			 
+			 
+			 
+			 
 		
 		
          } 
@@ -399,3 +413,4 @@ shadesUiModule.showTime({
 });
 shadesUiModule.CurrentLocation('London', 'Canada', ['#weather_content']);
 shadesUiModule.searchSuggest('Google');
+shadesUiModule.Speech;
