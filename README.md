@@ -1,9 +1,7 @@
 # Shades (Chrome extension)
 
- *Credits Shades team a.k.a Team Singlelinelogics -> Jijo john , Manzoor , Aswin , Jishnu ..
- 
- 
-Shades is a  chrome extension for changing your default chrome New tab page.
+
+ Shades is a  chrome extension for changing your default chrome New tab page.
 
 #Features
 * Weather
@@ -36,5 +34,8 @@ bootstrap.min.js (JS file from the bootstrap project)  , jquery-2.1.3.min.js (Jq
 * Shades.html [HTML file for the Default popup]
 
 * manifest.json  [ Manifest JSON File for the extension (Permissions , extension details , icons are defined in this file)]
+
+coded by jijojohn @ shades
+
 
 
