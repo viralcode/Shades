@@ -347,7 +347,7 @@ var shadesUiModule = (function() {
 			 {
 				 
 				 
-				var results = items[0].childNodes[i].firstElementChild.getAttribute('data'));
+				var results = items[0].childNodes[i].firstElementChild.getAttribute('data');
 				
 				 
 			 }
